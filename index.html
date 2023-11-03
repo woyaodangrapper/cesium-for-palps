@@ -1,13 +1,27 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Image Distortion</title>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script> -->
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./lib/Cesium/Widgets/widgets.css" />
+    <script type="text/javascript" src="./lib/Cesium/Cesium.js"></script>
+    <script type="text/javascript" src="/src/main.js"></script>
+    <script type="text/javascript" src="/src/dom/geoInfoControl.js"></script>
+  </head>
 
-<head>
-	<meta charset="utf-8" />
-	<title>Image Distortion</title>
-</head>
+  <body></body>
+  <script>
+    // let mapMain = new Map3D();
 
-<body>
-	<script src="/js/main.js" type="module"></script>
-</body>
-
+    // mapMain.then((xxx) => {
+    //   console.log(mapMain.geo, "mapMain loaded");
+    //   debugger
+    // });
+    (async function () {
+      let { viewer, mapMain } = await new Map3D();
+      mapMain.geo.box.init(viewer);
+    })();
+  </script>
 </html>

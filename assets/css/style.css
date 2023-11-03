@@ -1,0 +1,105 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+  max-height: 100%;
+  -webkit-font-smoothing: antialiased;
+  background-color: '#171744';
+  overflow: hidden;
+}
+.map-container {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  /*初始状态 透明度为0*/
+  40% {
+    opacity: 0;
+  }
+  /*过渡状态 透明度为0*/
+  100% {
+    opacity: 1;
+  }
+  /*结束状态 透明度为1*/
+}
+
+@-webkit-keyframes fade-in {
+  /*针对webkit内核*/
+  0% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/**滚轮样式*/
+
+.cesium-mousezoom {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100px;
+  height: 100px;
+  margin-top: -24px;
+  /*图片高度的一半*/
+  margin-left: -24px;
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: visibility 0s 0.2s, opacity 0.2s ease-in;
+  -moz-transition: visibility 0s 0.2s, opacity 0.2s ease-in;
+  transition: visibility 0s 0.2s, opacity 0.2s ease-in;
+}
+
+.cesium-mousezoom .zoomimg {
+  width: 48px;
+  height: 48px;
+  background-image: url(/assets/img/zoom_spot.png);
+  background-size: 100% 100%;
+}
+
+.cesium-mousezoom-visible {
+  visibility: visible;
+  opacity: 1;
+  -webkit-transition: opacity 0.2s ease-out;
+  -moz-transition: opacity 0.2s ease-out;
+  transition: opacity 0.2s ease-out;
+}
+
+/**左下角，鼠标经纬度提示*/
+
+.gis-bar {
+  position: absolute;
+  z-index: 991;
+  width: 100%;
+  padding: 6px 10px;
+  font-size: 13px;
+  color: rgb(233, 233, 233);
+  text-shadow: 2px 2px 2px #000;
+  background-color: rgb(14 14 14 / 64%);
+}
+
+.gis-bar div {
+  float: right;
+  min-width: 80px;
+  margin-right: 20px;
+}
+
+@media screen and (max-width: 600px) {
+  .gis-bar {
+    display: none;
+  }
+}
