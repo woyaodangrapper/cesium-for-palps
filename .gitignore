@@ -1,0 +1,38 @@
+# dependencies
+/node_modules
+node_modules/
+
+# editor files
+.DS_Store
+
+# build files
+/es
+/lib
+/dist
+/typings
+
+# temporary files
+_site
+package
+tmp*
+temp*
+coverage
+test-report.html
+
+# editor configuration
+.idea
+
+# error logs
+yarn-error.log
+
+# cache files
+.stylelintcache
+
+# lock files
+yarn.lock
+package-lock.json
+pnpm-lock.yaml
+
+# local environment variables
+.env.local
+.env.*.local
