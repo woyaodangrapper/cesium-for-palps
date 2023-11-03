@@ -4,6 +4,7 @@ Map3D.prototype.geo = {
     handler: null,
     viewer: null,
     helper: null,
+    apiList: ['https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js'],
     init: function (viewer) {
       this.destroy();
 
@@ -18,13 +19,11 @@ Map3D.prototype.geo = {
      * 加载gsap动画库
      */
     _create3DLibrary() {
-      var list = ['https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js'];
-
       // cssExpr 用于判断资源是否是css
       var cssExpr = new RegExp("\\.css");
       if (navigator.onLine) {
         console.log("设备已连接到互联网,开始加载gsap动画库");
-        list.forEach(url => {
+        this.apiList.forEach(url => {
           const element = cssExpr.test(url)
             ? Object.assign(document.createElement('link'), { rel: 'stylesheet', href: `${url}` })
             : Object.assign(document.createElement('script'), { src: `${url}`, ['defer']: true });
@@ -124,7 +123,7 @@ Map3D.prototype.geo = {
 
 
         function updateElementWithAnimation(element, content) {
-          if (gsap === undefined) {
+          if (typeof gsap === 'undefined') {
             element.textContent = content;
             return
           };
@@ -220,6 +219,18 @@ Map3D.prototype.geo = {
         this.helper.removeAll();
         this.helper = null;
       }
+
+      var cssExpr = new RegExp("\\.css");
+      const scriptElements = document.getElementsByTagName('script');
+      this.apiList.forEach(url => {
+        const element = cssExpr.test(url)
+          ? Object.assign(document.createElement('link'), { rel: 'stylesheet', href: `${url}` })
+          : Object.assign(document.createElement('script'), { src: `${url}`, ['defer']: true });
+
+        for (const scriptElement of scriptElements)
+          if (scriptElement.src === url)
+            document.head.removeChild(element);
+      });
       // 清空viewer引用
       this.viewer = null;
     },

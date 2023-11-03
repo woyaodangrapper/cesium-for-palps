@@ -8,19 +8,165 @@
     <script type="text/javascript" src="./lib/Cesium/Cesium.js"></script>
     <script type="text/javascript" src="./src/main.js"></script>
     <script type="text/javascript" src="./src/dom/geoInfoControl.js"></script>
+    <script type="text/javascript" src="./src/dom/lottieControl.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   </head>
+  <style>
+    .site_header_area {
+      position: fixed;
+      width: 100%;
+      height: 82px;
+      top: 0;
+      background-color: #0d3562;
+      box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.15);
+      transition: background-color 0.5s ease-in-out;
+      z-index: 999;
+    }
 
-  <body></body>
+    .brand_area {
+      display: inline-block;
+      position: relative;
+      top: 8px;
+      margin-left: 17px;
+      width: 338px;
+      height: 60px;
+      background-image: url(./assets/img/logo_sight_trio@2x.png);
+      background-size: contain;
+      transition: width 0.3s, height 0.3s;
+    }
+
+    #site_nav_container {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      text-align: right;
+      z-index: 50;
+      display: block !important;
+    }
+
+    .nav_area {
+      text-align: right;
+    }
+
+    .nav li {
+      display: inline-block;
+      cursor: pointer;
+      margin-right: 0.8em;
+      border-radius: 2px;
+      white-space: nowrap;
+      background-color: transparent !important;
+    }
+
+    .site_nav {
+      position: relative;
+      display: block;
+      width: 100%;
+      height: 100%;
+      padding-top: 18px;
+      overflow-y: visible;
+      box-sizing: border-box;
+      line-height: 1.4;
+    }
+
+    .nav_title a {
+      display: block;
+      position: relative;
+      font-weight: 700;
+      line-height: 1.4em;
+      height: 100%;
+      cursor: pointer;
+    }
+
+    .main_nav_item {
+      display: block;
+      padding: 0.5em 0.8em;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: white;
+    }
+
+    .icon div {
+      content: "";
+      display: block;
+      width: 3.25em;
+      height: 4.6875em;
+      background-repeat: no-repeat;
+      background-size: contain;
+      position: absolute;
+      transform: translate(-60%, -50%);
+    }
+    .icon.playing::before {
+      animation: play-animation 1s linear infinite;
+    }
+
+    @keyframes play-animation {
+      from {
+        background-position: 0 0;
+      }
+      to {
+        background-position: -1000px 0;
+      } /* 假设宽度为 10 个图像的宽度 */
+    }
+    .nav {
+      display: inline-block;
+      height: 100%;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      padding-top: 9px;
+    }
+
+    .arrow_expand {
+      display: inline-block;
+      max-width: 100%;
+      width: 28px;
+      height: 22px;
+      vertical-align: middle;
+      border: 0;
+      line-height: 1.4em;
+      font-weight: 700;
+    }
+  </style>
+  <body>
+    <div class="site_header_area">
+      <header class="site_header">
+        <div class="brand_area"></div>
+        <div id="site_nav_container">
+          <nav class="site_nav">
+            <span class="nav_area">
+              <ul class="nav">
+                <li class="nav_icon mars_now">
+                  <div class="nav_title">
+                    <a class="main_nav_item icon" href="#" title="Mars Now">
+                      <div id="icon_container"></div>
+                    </a>
+                  </div>
+                </li>
+                <li class="missions_gallery_subnav_item">
+                  <div class="nav_title">
+                    <a class="main_nav_item">
+                      Examples
+                      <img class="arrow_expand" src="https://mars.nasa.gov/assets/arrow_down.png" alt="expand arrow" />
+                    </a>
+                  </div>
+                </li>
+              </ul>
+            </span>
+          </nav>
+        </div>
+      </header>
+    </div>
+  </body>
   <script>
-    // let mapMain = new Map3D();
-
-    // mapMain.then((xxx) => {
-    //   console.log(mapMain.geo, "mapMain loaded");
-    //   debugger
-    // });
     (async function () {
       let { viewer, mapMain } = await new Map3D();
       mapMain.geo.box.init(viewer);
+      mapMain.lottie.init().then(() => {
+        mapMain.lottie.createAnimation(document.getElementById("icon_container"), { animationJson: "./assets/lottie/shaderAnimation.json" });
+      });
     })();
   </script>
 </html>

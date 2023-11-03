@@ -67,7 +67,7 @@ body {
 .cesium-mousezoom .zoomimg {
   width: 48px;
   height: 48px;
-  background-image: url(/assets/img/zoom_spot.png);
+  background-image: url(../img/zoom_spot.png);
   background-size: 100% 100%;
 }
 

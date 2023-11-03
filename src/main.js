@@ -24,14 +24,11 @@ class Map3D {
       this._createMapEle()
 
     this._create3DLibrary()
-    return new Promise((resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
       try {
-        window.onload = async () => {
-          let viewer = that._viewer = await this._createMap();
-          this._loadingImageUnderlays(viewer)
-
-          resolve({ viewer, mapMain: that })
-        };
+        let viewer = that._viewer = await this._createMap();
+        this._loadingImageUnderlays(viewer)
+        resolve({ viewer, mapMain: that })
       } catch (error) {
         reject(error)
       }
@@ -51,6 +48,8 @@ class Map3D {
   _createMapEle() {//创建可视域video DOM  元素
     const mapContainer = document.createElement('div');
     mapContainer.classList.add('map-container');
+    // 设置data-html2canvas-ignore属性为true
+    // mapContainer.setAttribute('data-html2canvas-ignore', 'false');
     mapContainer.style.zIndex = 999;
     mapContainer.id = this.mapId;
     document.body.appendChild(mapContainer);
@@ -89,24 +88,55 @@ class Map3D {
     class MyCesiumViewer {
       constructor(options) {
         const {
-          geocoder = false,
-          homeButton = false,
-          sceneModePicker = false,
-          baseLayerPicker = false,
-          navigationHelpButton = false,
-          animation = false,
-          timeLine = false,
-          fullscreenButton = false,
-          vrButton = false,
-          infoBox = false,
-          selectionIndicator = false,
-          shadows = false,
-          shouldAnimate = true,
+          geocoder = false, // 地理编码器
+          homeButton = false, // 主页按钮
+          sceneModePicker = false, // 场景模式选择器
+          baseLayerPicker = false, // 底图层选择器
+          navigationHelpButton = false, // 导航帮助按钮
+          animation = false, // 动画控制器
+          timeLine = false, // 时间线
+          fullscreenButton = false, // 全屏按钮
+          vrButton = false, // VR按钮
+          infoBox = false, // 信息框
+          selectionIndicator = false, // 选择指示器
+          shadows = false, // 阴影
+          shouldAnimate = true, // 是否应该执行动画
+          webGlContextAttributes = false, // WebGL上下文选项 如果需要色彩感知如截图等需要开启此选项(会带来性能损耗)
           id: container
         } = options;
+        Object.assign(this, { id: container, shouldAnimate });
+        let config = {
+          geocoder,
+          homeButton,
+          sceneModePicker,
+          baseLayerPicker,
+          navigationHelpButton,
+          animation,
+          timeLine,
+          fullscreenButton,
+          vrButton,
+          infoBox,
+          selectionIndicator,
+          shadows,
+          shouldAnimate,
+        }
+        if (webGlContextAttributes) {
+          // WebGL上下文选项
+          config.contextOptions = {
+            webgl: {
+              alpha: true, // 启用透明度。可能会增加绘图操作的计算成本和内存消耗。
+              depth: true, // 启用深度缓冲。可能会增加渲染复杂度，并增加GPU内存消耗。
+              stencil: true, // 启用模板缓冲。可能会增加渲染复杂度，并增加GPU内存消耗。
+              antialias: true, // 启用抗锯齿。可能会增加渲染操作的计算成本。
+              premultipliedAlpha: true, // 预乘透明度。可能会增加绘图操作的计算成本。
+              preserveDrawingBuffer: true, // 保留绘图缓冲区。可能会增加内存消耗，特别是对于大型或复杂的场景。
+              failIfMajorPerformanceCaveat: true // 如果性能差，会失败。这可能会导致一些WebGL功能被禁用，以提高性能。
+            }
+          }
+        }
 
-        Object.assign(this, { container, shouldAnimate });
-        const viewer = new Cesium.Viewer(container, { options });
+        const viewer = new Cesium.Viewer(container, config);
+
         this._hideCesiumElement();
         this._setMouseStyle(viewer, container);
         this._applyTerrainAdjustment(viewer);
