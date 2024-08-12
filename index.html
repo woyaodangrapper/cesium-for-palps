@@ -2,15 +2,21 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Image Distortion</title>
+    <title></title>
   </head>
-
   <body>
-    <div class="container py-4 px-3 mx-auto">
-      <h1>Hello, Bootstrap and Vite!</h1>
-      <button class="btn btn-primary">Primary button</button>
-    </div>
-
-    <script src="./src/main.ts" type="module"></script>
+    <div id="cesiumContainer" style="height: 100%; width: 1000%"></div>
   </body>
+
+  <script type="module">
+    import { Map3D } from './src/main.ts';
+    Map3D.create({ mapId: 'cesiumContainer' })
+      .then((map3D) => {
+        // 使用初始化后的 Map3D 实例
+        console.log('Map3D initialized:', map3D);
+      })
+      .catch((error) => {
+        console.error('Error initializing Map3D:', error);
+      });
+  </script>
 </html>
