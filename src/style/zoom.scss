@@ -1,0 +1,34 @@
+.cesium-mousezoom {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+  margin-top: -24px; // 图片高度的一半
+  margin-left: -24px;
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+
+  // 过渡效果
+  -webkit-transition: visibility 0s 0.2s, opacity 0.2s ease-in;
+  -moz-transition: visibility 0s 0.2s, opacity 0.2s ease-in;
+  transition: visibility 0s 0.2s, opacity 0.2s ease-in;
+
+  .zoomimg {
+    width: 48px;
+    height: 48px;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAB00lEQVRoge2XWUvEQBCEv8RjPVZRREHFB/FB/P8/yAcVId6a1T1cRxpqYExQcDOwgl0QsplJJlXp6u5ZHA6Hw+FwOBwOx79F0UV4CKE1pjWL5HfEhz3SuttuKmansdga6QZjUgILOpcNAe86f+R6YU4BhdZbApZ1jusb4Qkwlgg7pt9F5DfIJaBIiK8B60AfWFEUjPAAqHV+E/lpa6U5CEi/vBHfBnaBPWBTc0b4HqiAGz1nAkJXO+USYJ7vifA+cKxjT8JegEtFB0XELDWdt4A0ac0uW8ABcAqcAYey1ZPmQmIli8qkay7kikCpCPRlnyPgRAIsAs/60nfAFbCq8Vhy5yqAJArLIteXndY1F5LrlaTMFl17UdkamQ0xGafy9ggYJj6P1+PcvSBXBCLJgWxyDeyIpFnrUUlcyU4jCQlde0EOAfFrjpSsRn5DY5XeYVXoAjhXGa3JkMA5BIRki5AKIKk89o5X4FZzlQSYnf5MJ44WqiXKyD0ooUtd17LPi/Ih9oBOInLtRmMpjR25p2oTS2VsXEMJ/WKfLrvRnNvpoiFkIalyaZV6p7GF+Cvb6agmWqNsNKnw03+CWZH7/0BKrrnTzErc4XA4HA6Hw+GYM4BP9uWVi1MuuWgAAAAASUVORK5CYII=');
+    background-size: 100% 100%;
+  }
+}
+
+.cesium-mousezoom-visible {
+  visibility: visible;
+  opacity: 1;
+
+  // 过渡效果
+  -webkit-transition: opacity 0.2s ease-out;
+  -moz-transition: opacity 0.2s ease-out;
+  transition: opacity 0.2s ease-out;
+}

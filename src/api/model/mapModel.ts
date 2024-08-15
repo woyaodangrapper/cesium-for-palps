@@ -6,7 +6,7 @@ export interface ViewerOptions {
   baseLayerPicker?: boolean; // 底图层选择器
   navigationHelpButton?: boolean; // 导航帮助按钮
   animation?: boolean; // 动画控制器
-  timeLine?: boolean; // 时间线
+  timeline?: boolean; // 时间线
   fullscreenButton?: boolean; // 全屏按钮
   vrButton?: boolean; // VR按钮
   infoBox?: boolean; // 信息框

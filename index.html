@@ -5,15 +5,18 @@
     <title></title>
   </head>
   <body>
-    <div id="cesiumContainer" style="height: 100%; width: 1000%"></div>
+    <div id="cesiumContainer" style="height: 100%; width: 100%"></div>
+    <map-indicator ref-viewer="viewer"></map-indicator>
   </body>
 
   <script type="module">
+    export let viewer;
     import { Map3D } from './src/main.ts';
+    import { registerRef } from './src/components/middleware';
+
     Map3D.create({ mapId: 'cesiumContainer' })
-      .then((map3D) => {
-        // 使用初始化后的 Map3D 实例
-        console.log('Map3D initialized:', map3D);
+      .then(({ viewer }) => {
+        registerRef('viewer', viewer);
       })
       .catch((error) => {
         console.error('Error initializing Map3D:', error);

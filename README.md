@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/woyaodangrapper/cesium-for-palps">
-    <img src="/docs/images/palps-launcher-wallpaper.webp" alt="Logo" height="50%" width="100%">
+    <img src="https://raw.githubusercontent.com/woyaodangrapper/cesium-for-palps/main/doc/images/palps-launcher-wallpaper.webp" alt="Logo" height="50%" width="100%">
   </a>
 </p>
 

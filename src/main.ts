@@ -1,4 +1,9 @@
 import * as Cesium from 'cesium';
+import 'cesium/Build/Cesium/Widgets/widgets.css';
+import '@/components/mapIndicatorComponent';
+import '@/style/maps.scss';
+import '@/style/zoom.scss';
+
 import type {
   ViewerOptions, MapOptions, SetupOptions, WebGLContextOptions,
 } from './api/model/mapModel';
@@ -54,21 +59,21 @@ export class Map3D {
     // eslint-disable-next-line max-len
     Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJiNGZiOTc1NS0zZmZlLTQ4MzUtODFlMS00ZDI2NWE5YTFkZjIiLCJpZCI6MTgwMDUsInNjb3BlcyI6WyJhc3IiLCJnYyJdLCJpYXQiOjE1NzMxMTcwODd9.WPytI-wsAoBmC7NLmz01l0GcYoh3bvTES7z1yZQgGMM';
     const {
-      enableDebugMode = false,
+      enableDebugMode = true,
       geocoder = false, // 地理编码器
       homeButton = false, // 主页按钮
       sceneModePicker = false, // 场景模式选择器
       baseLayerPicker = false, // 底图层选择器
       navigationHelpButton = false, // 导航帮助按钮
       animation = false, // 动画控制器
-      timeLine = false, // 时间线
+      timeline = false, // 动画控制器
       fullscreenButton = false, // 全屏按钮
       vrButton = false, // VR按钮
       infoBox = false, // 信息框
       selectionIndicator = false, // 选择指示器
       shadows = false, // 阴影
       shouldAnimate = true, // 是否应该执行动画
-      webGlContextAttributes = false, // WebGL上下文选项 如果需要色彩感知如截图等需要开启此选项(会带来性能损耗)
+      webGlContextAttributes = true, // WebGL上下文选项 如果需要色彩感知如截图等需要开启此选项(会带来性能损耗)
       msaaSamples = 1,
       id = 'cesiumContainer',
     } = options;
@@ -110,7 +115,7 @@ export class Map3D {
         baseLayerPicker, // 底图层选择器
         navigationHelpButton, // 导航帮助按钮
         animation, // 动画控制器
-        timeLine, // 时间线
+        timeline, // 时间线
         fullscreenButton, // 全屏按钮
         vrButton, // VR按钮
         infoBox, // 信息框
@@ -144,7 +149,9 @@ export class Map3D {
       'cesium-viewer-bottom',
     ].forEach((toolName) => {
       const element = document.querySelector(`.${toolName}`) as HTMLElement;
-      if (element !== undefined) element.style.display = 'none';
+      if (element instanceof HTMLElement) {
+        element.style.display = 'none';
+      }
     });
   }
 
