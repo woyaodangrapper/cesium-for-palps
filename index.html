@@ -2,24 +2,83 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title>PalpsGIS - Enhanced 3D Geospatial Visualization with Advanced Shading Techniques</title>
   </head>
   <body>
+    <div class="ui">
+      <header class="header">
+        <nav class="breadcrumb">
+          <nav key="static" class="home">
+            <span class="icon-logo"></span>
+            <h1 class="text click">Palps Enhanced 3D Geospatial</h1>
+          </nav>
+          <nav><span class="svg-right"></span><a class="link click">Earth</a></nav>
+        </nav>
+
+        <nav class="top-right-nav">
+          <button class="share-button click"><span class="icon-share"></span>Share</button>
+
+          <nav class="mega-menu">
+            <button key="menu-open" class="menu-button click"><span class="icon-menu"></span>Menu</button>
+            <div key="menu-background" class="background hidden click"></div>
+            <div key="menu-container" class="menu-container hidden">
+              <div class="menu-header">
+                <div class="branding">
+                  <span class="icon-logo click"></span><span class="title click">PALPS ENHANCED 3D GEOSPATIAL</span>
+                </div>
+                <span key="menu-close" class="icon-close click"></span>
+              </div>
+
+              <div key="content-wrapper" class="content-wrapper hidden">
+                <div class="menu-content">
+                  <div class="block">
+                    <button class="title">Stories</button>
+                    <div class="list-container">
+                      <div class="entry-container">
+                        <div class="link-container">
+                          <img
+                            src="https://eyes.nasa.gov/apps/solar-system/assets/images/cards/prefire_ad.png"
+                            class="entry-image"
+                          /><span class="small click entry-label">May/June 2024: PREFIRE Cubesats Launched</span>
+                        </div>
+                        <div class="link-container">
+                          <img
+                            src="https://eyes.nasa.gov/apps/solar-system/assets/images/cards/prefire_ad.png"
+                            class="entry-image"
+                          /><span class="small click entry-label"
+                            >Eyes on Asteroids: Asteroid and Comet Missions<span class="icon icon-external"></span
+                          ></span>
+                        </div>
+                        <div class="link-container">
+                          <img
+                            src="https://eyes.nasa.gov/apps/solar-system/assets/images/cards/prefire_ad.png"
+                            class="entry-image"
+                          /><span class="small click entry-label"
+                            >Perseverance: Entry, Descent, and Landing<span class="icon icon-external"></span
+                          ></span>
+                        </div>
+                        <div class="link-container">
+                          <img
+                            src="https://eyes.nasa.gov/apps/solar-system/assets/images/cards/prefire_ad.png"
+                            class="entry-image"
+                          /><span class="small click entry-label">1977 - Today: Voyager's Grand Tour</span>
+                        </div>
+                      </div>
+                      <div class="az-link-container click">
+                        <button class="click az-link">View <strong>8</strong> Stories</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </nav>
+      </header>
+    </div>
+
     <div id="cesiumContainer" style="height: 100%; width: 100%"></div>
     <map-indicator ref-viewer="viewer"></map-indicator>
   </body>
-
-  <script type="module">
-    export let viewer;
-    import { Map3D } from './src/main.ts';
-    import { registerRef } from './src/components/middleware';
-
-    Map3D.create({ mapId: 'cesiumContainer' })
-      .then(({ viewer }) => {
-        registerRef('viewer', viewer);
-      })
-      .catch((error) => {
-        console.error('Error initializing Map3D:', error);
-      });
-  </script>
+  <script type="module" src="./src/main.ts"></script>
 </html>

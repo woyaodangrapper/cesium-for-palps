@@ -291,7 +291,7 @@ class MapIndicatorComponent extends HTMLElement {
     style.textContent = `
       :host {
         position: absolute;
-        z-index: 991;
+        z-index: 9;
         width: 100%;
         padding: 6px 10px;
         font-size: 13px;
